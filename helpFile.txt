@@ -1,0 +1,6 @@
+```How can I help?
+Use >help_"command" while using >help
+
+1) Commands
+2) Fishing
+3) Inventory```
