@@ -33,12 +33,13 @@ async def on_message(message):
     # If author is the bot itself
     if message.author == client.user:
         return
-    # If the message starts with the trigger
+    # Fishing
     if message.content.startswith(fishTrigger):
         await client.send_message(message.channel, "You attempt to fish...")
         return
+    # Help Message
     if message.content.startswith(helpTrigger):
-    	await client.send_message(message,channel, "```How can I help? /n Test```")
+        await client.send_message(message.channel, "```How can I help? \n1) Fishing\n2) Mining (i guess)\n3) Selling```")
         return
  
 # Discord API key
