@@ -3,6 +3,9 @@ import discord
 from discord.ext import commands
 import ibmiotf, ibmiotf.device
 import asyncio
+from fishing import *
+
+
 
 # Discord API key
 DiscordAPI = 'MjcyNDU4ODA3NzU2NzE4MDgw.C2VSvQ.kcERTwPL3D7MzBvVhFaLYqJRF3I'
@@ -39,13 +42,12 @@ async def on_message(message):
 		return
 	# Fishing
 	if message.content.startswith(fishTrigger):
-		await client.send_message(message.channel, "You attempt to fish...")
-		await asyncio.sleep(5)
-		await client.send_message(message.channel, "You caught... a :fish:!")
+		await client.send_message(message.channel, fishing.cast(message.author, message.channel))
 		return
 	# Help Message
 	if message.content.startswith(helpTrigger):
 		f = open(helpF)
+		#outputs the main help text file
 		await client.send_message(message.channel, f.read())
 		f.close()
 		return
