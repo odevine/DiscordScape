@@ -5,7 +5,14 @@ import ibmiotf, ibmiotf.device
 import asyncio
 
 # Discord API key
-DiscordAPI = 'MjcyNDU4ODA3NzU2NzE4MDgw.C2VSvQ.kcERTwPL3D7MzBvVhFaLYqJRF3I'
+# pull token from file not checked in
+# read one line in case of newline at EOF
+DiscordAPI = open("bot-token.txt", "r").readline()[:-1]
+
+if len(DiscordAPI) == 0:
+    raise IOError("Failed to read token.")
+
+print(DiscordAPI)
 
 #Trigger for Help Command
 helpTrigger = '>help'
@@ -41,6 +48,6 @@ async def on_message(message):
     if message.content.startswith(helpTrigger):
         await client.send_message(message.channel, "```How can I help? \n1) Fishing\n2) Mining (i guess)\n3) Selling```")
         return
- 
+
 # Discord API key
 client.run(DiscordAPI)
