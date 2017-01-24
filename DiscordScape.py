@@ -15,10 +15,8 @@ helpTrigger = '>help'
 helpF = "helpFile.txt"
 # Trigger for Fishing
 fishTrigger = '>fish'
-fishF = "fishFile.txt"
 #Trigger for Selling Items
 sellTrigger = '>sell'
-sellF = "sellFile.txt"
 #Trigger for Inventory
 invTrigger = '>inv'
 invF = "inventory.txt"
@@ -43,6 +41,8 @@ async def on_message(message):
 	# Fishing
 	if message.content.startswith(fishTrigger):
 		await client.send_message(message.channel, fishing.cast(message.author, message.channel))
+		await asyncio.sleep(fishing.time(message.author, message.channel))
+		await client.send_message(message.channel, fishing.caught(message.author, message.channel))
 		return
 	# Help Message
 	if message.content.startswith(helpTrigger):
