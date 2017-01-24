@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 import ibmiotf, ibmiotf.device
 import asyncio
-from fishing import *
+from fish import *
 
 
 
@@ -48,9 +48,9 @@ async def on_message(message):
 		return
 	# Fishing
 	if message.content.startswith(fishTrigger):
-		await client.send_message(message.channel, fishing.cast(message.author, message.channel))
+		await client.send_message(message.channel, fish.cast(message.author, message.channel))
 		await asyncio.sleep(fishing.time(message.author, message.channel))
-		await client.send_message(message.channel, fishing.caught(message.author, message.channel))
+		await client.send_message(message.channel, fish.caught(message.author, message.channel))
 		return
 	# Help Message
 	if message.content.startswith(helpTrigger):
