@@ -1,4 +1,4 @@
-class fishing:
+class fish:
 	def cast(player, location):
 		#temp code to show that the player name and location are stored
 		output = "Player: %s Location: %s" % (player, location)
