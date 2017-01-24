@@ -42,7 +42,7 @@ async def on_ready():
 # Checks Chat for trigger phrase
 @client.event
 async def on_message(message):
-<<<<<<< HEAD
+
 	# If author is the bot itself
 	if message.author == client.user:
 		return
@@ -66,19 +66,5 @@ async def on_message(message):
 		f.close()
 		return
  
-=======
-    # If author is the bot itself
-    if message.author == client.user:
-        return
-    # Fishing
-    if message.content.startswith(fishTrigger):
-        await client.send_message(message.channel, "You attempt to fish...")
-        return
-    # Help Message
-    if message.content.startswith(helpTrigger):
-        await client.send_message(message.channel, "```How can I help? \n1) Fishing\n2) Mining (i guess)\n3) Selling```")
-        return
-
->>>>>>> refs/remotes/origin/master
 # Discord API key
 client.run(DiscordAPI)
