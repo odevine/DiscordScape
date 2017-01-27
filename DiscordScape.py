@@ -1,7 +1,5 @@
 # Imports
 import discord
-from discord.ext import commands
-import ibmiotf, ibmiotf.device
 import asyncio
 from fish import *
 
