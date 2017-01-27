@@ -1,8 +1,6 @@
 import random
 import fishDictionaries
 
-
-
 # Temp code to show that the player name and location are stored
 def loc(player, location):
 	output = "Player: %s Location: %s" % (player, location)
