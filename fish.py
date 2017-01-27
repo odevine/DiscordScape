@@ -13,35 +13,10 @@ class fish :
         return 3
     # fuck yeah, 3's a bitchin' number
 
-    # Command called when >fish command is used
-    # Returns the fish that has been caught
-    def cast(self, group, sublevel, rodMod, hookMod, baitMod):
-        if (biteCheck(baitMod)):
-            # Sucessful cast, check for fish or item
-            if (fishItemCheck(hookMod)):
-                # Catch is a fish, store fish name
-                fishID = fishCheck(group, sublevel)
-                fishName = fishDictionaries.fishDict.get(fishID)
-                # Store modifier
-                fishMod = fishDictionaries.fishModDict.get(fishID)
-
-                # Check for success
-                if successCheck(rodMod, fishMod, group, sublevel):
-                    return "You caught a " + fishName + "!"
-                else:
-                    # It gets away...
-                    return "The " + fishName + " got away..."
-            else:
-                # Catch item, return item
-                return "You caught an [item]!"
-        else:
-            # Failed cast
-            return "Nothing seems to be biting..."
-
-    # Checks if sucessful catch
-    def biteCheck(self, baitmod):
+    # Checks if successful catch
+    def biteCheck(self, baitMod):
         # True = Success
-        return random.randint(0, 100) > (40 - baitmod)
+        return random.randint(0, 100) > (40 - baitMod)
 
     # Checks if catch is an item or a fish
     def fishItemCheck(self, hookMod):
@@ -77,3 +52,29 @@ class fish :
             return fishCheck((group - 1), 5)
         # otherwise return fishID in proper form (ie. F00, F53, etc)
         return "F" + str(group) + fishPick
+
+    # Command called when >fish command is used
+    # Returns the fish that has been caught
+    def cast(self, group, sublevel, rodMod, hookMod, baitMod):
+        if (biteCheck(baitMod)):
+            # Successful cast, check for fish or item
+            if (fishItemCheck(hookMod)):
+                # Catch is a fish, store fish name
+                fishID = fishCheck(group, sublevel)
+                fishName = fishDictionaries.fishDict.get(fishID)
+                # Store modifier
+                fishMod = fishDictionaries.fishModDict.get(fishID)
+
+                # Check for success
+                if successCheck(rodMod, fishMod, group, sublevel):
+                    return "You caught a " + fishName + "!"
+                else:
+                    # It gets away...
+                    return "The " + fishName + " got away..."
+            else:
+                # Catch item, return item
+                return "You caught an [item]!"
+        else:
+            # Failed cast
+            return "Nothing seems to be biting..."
+
