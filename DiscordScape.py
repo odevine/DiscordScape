@@ -5,11 +5,11 @@ import ibmiotf, ibmiotf.device
 import asyncio
 from fish import *
 
-
-
-# Discord API key
-# pull token from file not checked in
-# read one line in case of newline at EOF
+###########################################
+# Discord API key                         #
+# pull token from file not checked in     #
+# read one line in case of newline at EOF #
+###########################################
 DiscordAPI = open("bot-token.txt", "r").readline()[:-1]
 
 if len(DiscordAPI) == 0:
@@ -46,20 +46,22 @@ async def on_message(message):
 	# If author is the bot itself
 	if message.author == client.user:
 		return
+
 	# Fishing
 	if message.content.startswith(fishTrigger):
-		await client.send_message(message.channel, fish.cast(message.author, message.channel))
+		await client.send_message(message.channel, fish.loc(message.author, message.channel))
 		await asyncio.sleep(fishing.time(message.author, message.channel))
-		await client.send_message(message.channel, fish.caught(message.author, message.channel))
+		await client.send_message(message.channel, fish.cast(0, 0, 0, 0, 0))
 		return
+
 	# Help Message
 	if message.content.startswith(helpTrigger):
 		f = open(helpF)
-		#outputs the main help text file
+		# outputs the main help text file
 		await client.send_message(message.channel, f.read())
 		f.close()
 		return
-	#Test Inventory
+	# Test Inventory
 	if message.content.startswith(invTrigger):
 		f = open(invF)
 		await client.send_message(message.channel, f.read())
