@@ -56,17 +56,17 @@ class fish :
     # Command called when >fish command is used
     # Returns the fish that has been caught
     def cast(self, group, sublevel, rodMod, hookMod, baitMod):
-        if (biteCheck(baitMod)):
+        if (biteCheck(self, baitMod)):
             # Successful cast, check for fish or item
-            if (fishItemCheck(hookMod)):
+            if (fishItemCheck(self, hookMod)):
                 # Catch is a fish, store fish name
-                fishID = fishCheck(group, sublevel)
+                fishID = fishCheck(self, group, sublevel)
                 fishName = fishDictionaries.fishDict.get(fishID)
                 # Store modifier
                 fishMod = fishDictionaries.fishModDict.get(fishID)
 
                 # Check for success
-                if successCheck(rodMod, fishMod, group, sublevel):
+                if successCheck(self, rodMod, fishMod, group, sublevel):
                     return "You caught a " + fishName + "!"
                 else:
                     # It gets away...
