@@ -11,7 +11,6 @@ class fish :
     # I, CJ, am too lazy to comment what this does
     def time(self, player, location):
         return 3
-
     # fuck yeah, 3's a bitchin' number
 
     # Command called when >fish command is used

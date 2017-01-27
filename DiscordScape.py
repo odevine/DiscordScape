@@ -30,6 +30,7 @@ invF = "inventory.txt"
 
 
 client = discord.Client()
+fishing = fish()
 
 # Bot Ready messages
 @client.event
@@ -49,9 +50,9 @@ async def on_message(message):
 
 	# Fishing
 	if message.content.startswith(fishTrigger):
-		await client.send_message(message.channel, fish.location(message.author, message.channel))
-		await asyncio.sleep(fish.time(message.author, message.channel))
-		await client.send_message(message.channel, fish.cast(0, 0, 0, 0, 0))
+		await client.send_message(message.channel, fishing.location(message.author, message.channel))
+		await asyncio.sleep(fishing.time(message.author, message.channel))
+		await client.send_message(message.channel, fishing.cast(0, 0, 0, 0, 0))
 		return
 
 	# Help Message
