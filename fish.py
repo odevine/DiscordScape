@@ -4,7 +4,7 @@ import fishDictionaries
 
 class fish:
     # Temp code to show that the player name and location are stored
-    def loc(player, location):
+    def location(player, location):
         output = "Player: %s Location: %s" % (player, location)
         return output
 
