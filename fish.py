@@ -2,21 +2,21 @@ import random
 import fishDictionaries
 
 
-class fish:
+class fish :
     # Temp code to show that the player name and location are stored
-    def location(player, location):
+    def location(self, player, location):
         output = "Player: %s Location: %s" % (player, location)
         return output
 
     # I, CJ, am too lazy to comment what this does
-    def time(player, location):
+    def time(self, player, location):
         return 3
 
     # fuck yeah, 3's a bitchin' number
 
     # Command called when >fish command is used
     # Returns the fish that has been caught
-    def cast(group, sublevel, rodMod, hookMod, baitMod):
+    def cast(self, group, sublevel, rodMod, hookMod, baitMod):
         if (biteCheck(baitMod)):
             # Sucessful cast, check for fish or item
             if (fishItemCheck(hookMod)):
@@ -40,22 +40,22 @@ class fish:
             return "Nothing seems to be biting..."
 
     # Checks if sucessful catch
-    def biteCheck(baitmod):
+    def biteCheck(self, baitmod):
         # True = Success
         return random.randint(0, 100) > (40 - baitmod)
 
     # Checks if catch is an item or a fish
-    def fishItemCheck(hookMod):
+    def fishItemCheck(self, hookMod):
         # True = Fish
         return random.randint(0, 100) > (20 - hookMod)
 
     # Checks if bite is successful
-    def successCheck(rodMod, fishMod, group, sublevel):
+    def successCheck(self, rodMod, fishMod, group, sublevel):
         # True = caught
         return random.randint(0, 100) < (fishMod + (group * 5) + sublevel) + rodMod
 
     # Determines what fish has been caught
-    def fishCheck(group, sublevel):
+    def fishCheck(self, group, sublevel):
         # If non-recursed
         if (sublevel < 5):
             F0 = 80 - (sublevel * 10)
