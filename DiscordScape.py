@@ -11,6 +11,7 @@ from fish import *
 # read one line in case of newline at EOF #
 ###########################################
 DiscordAPI = open("bot-token.txt", "r").readline()[:-1]
+fish = fish()
 
 if len(DiscordAPI) == 0:
     raise IOError("Failed to read token.")
