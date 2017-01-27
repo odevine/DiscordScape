@@ -48,9 +48,9 @@ async def on_message(message):
 
 	# Fishing
 	if message.content.startswith(fishTrigger):
-		await client.send_message(message.channel, fishing.location(message.author, message.channel))
+		#await client.send_message(message.channel, fishing.location(message.author, message.channel))
 		await asyncio.sleep(fishing.time(message.author, message.channel))
-		await client.send_message(message.channel, fishing.cast(0, 0, 0, 0, 0))
+		await client.send_message(message.channel, fishing.cast(0, 4, 0, 0, 0))
 		return
 
 	# Help Message
