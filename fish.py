@@ -10,7 +10,7 @@ class fish :
 
     # I, CJ, am too lazy to comment what this does
     def time(self, player, location):
-        return 3
+        return 1
     # fuck yeah, 3's a bitchin' number
 
     # Checks if successful catch
