@@ -7,7 +7,6 @@ Hey famalam, this readme will eventually contain an accurate description of the 
     
     ```
     python3 -m pip install -U discord.py
-    pip install ibmiotf
     ```
     
 4. Add the bot token to `bot-token.txt`
