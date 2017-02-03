@@ -1,14 +1,17 @@
 # Imports
 import discord
 import asyncio
+import requests
+import sys
+import handlers
+from config import CONFIG
 from fish import *
 
 ###########################################
 # Discord API key                         #
-# pull token from file not checked in     #
-# read one line in case of newline at EOF #
+# pull token from config module           #
 ###########################################
-DiscordAPI = open("bot-token.txt", "r").readline()[:-1]
+DiscordAPI = CONFIG['botToken']
 
 if len(DiscordAPI) == 0:
     raise IOError("Failed to read token.")
@@ -26,46 +29,45 @@ sellTrigger = '>sell'
 invTrigger = '>inv'
 invF = "inventory.txt"
 
+###########################################
+# Database API URL                        #
+# get base IP from config module          #
+###########################################
+DATABASE_URL = CONFIG['databaseUrl']
 
 client = discord.Client()
-fishing = fish()
 
 # Bot Ready messages
 @client.event
 async def on_ready():
-	print('Logged in as')
-	print(client.user.name)
-	print(client.user.id)
-	print('------')
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
 
 # Checks Chat for trigger phrase
 @client.event
 async def on_message(message):
 
-	# If author is the bot itself
-	if message.author == client.user:
-		return
+    # If author is the bot itself
+    if message.author == client.user:
+        return
 
-	# Fishing
-	if message.content.startswith(fishTrigger):
-		#await client.send_message(message.channel, fishing.location(message.author, message.channel))
-		await asyncio.sleep(fishing.time(message.author, message.channel))
-		await client.send_message(message.channel, fishing.cast(0, 4, 0, 0, 0))
-		return
+    # Fishing
+    # TODO: place in a handler function outside this file.
+    if message.content.startswith(fishTrigger):
+        await handlers.fishingTriggerHandler(message, client)
 
-	# Help Message
-	if message.content.startswith(helpTrigger):
-		f = open(helpF)
-		# outputs the main help text file
-		await client.send_message(message.channel, f.read())
-		f.close()
-		return
-	# Test Inventory
-	if message.content.startswith(invTrigger):
-		f = open(invF)
-		await client.send_message(message.channel, f.read())
-		f.close()
-		return
- 
+    # Help Message
+    if message.content.startswith(helpTrigger):
+        f = open(helpF)
+        # outputs the main help text file
+        await client.send_message(message.channel, f.read())
+        f.close()
+        return
+    # Test Inventory
+    if message.content.startswith(invTrigger):
+        await handlers.invTriggerHandler(message, client)
+
 # Discord API key
 client.run(DiscordAPI)
