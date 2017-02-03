@@ -54,7 +54,8 @@ class fish :
         return "F" + str(group) + fishPick
 
     # Command called when >fish command is used
-    # Returns the fish that has been caught
+    # Returns a tuple: (fishNumber, fishName, success)
+    # Returns null if nothing bit
     def cast(self, group, sublevel, rodMod, hookMod, baitMod):
         if (self.biteCheck(baitMod)):
             # Successful cast, check for fish or item
@@ -67,14 +68,14 @@ class fish :
 
                 # Check for success
                 if self.successCheck(rodMod, fishMod, group, sublevel):
-                    return "You caught a " + fishName + "!"
+                    return (fishID, fishName, True)
                 else:
                     # It gets away...
-                    return "The " + fishName + " got away..."
+                    return (fishID, fishName, False)
             else:
                 # Catch item, return item
-                return "You caught an [item]!"
+                # TODO: implement items
+                return None
         else:
             # Failed cast
-            return "Nothing seems to be biting..."
-
+            return None
